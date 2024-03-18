@@ -8,7 +8,7 @@ This is a joke program used to archive 'dirt' on people specifically crafted for
 # Installation
 Please note that this program has only been tested on **Windows** and might not work on other systems.<br>
 
-1. Download the [executable present on the releases page](https://github.com/MrKelpy/GetosDirtLocker/releases/latest) or clone this repository using.:
+1. Download the [installer present on the releases page](https://github.com/MrKelpy/GetosDirtLocker/releases/latest) or clone this repository using.:
 
 ```
 $ git clone https://github.com/MrKelpy/GetosDirtLocker
