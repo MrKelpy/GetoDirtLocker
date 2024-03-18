@@ -75,7 +75,7 @@ public class DirtStorageManager
     /// <returns>The filepath for the picture</returns>
     public string GetDirtPicturePath(string id)
     {
-        string filepath = this.DirtStorageSection.SectionFullPath + $"/{id}.png";
+        string filepath = this.DirtStorageSection.SectionFullPath + $"/{Program.DefaultHostHash+id}.png";
         return File.Exists(filepath) ? filepath : null;
     }
 
@@ -93,7 +93,7 @@ public class DirtStorageManager
         // If the picture exists in the database, but not in the storage, download it.
         if (DatabaseImageAccessor.DirtImageExists(id))
         {
-            string filepath = DirtStorageSection.AddDocument($"{id}.png");
+            string filepath = DirtStorageSection.AddDocument($"{Program.DefaultHostHash+id}.png");
             
             using FileStream fileStream = new(filepath, FileMode.OpenOrCreate);
             byte[] image = DatabaseImageAccessor.GetDirtImage(id);

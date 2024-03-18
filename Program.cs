@@ -33,6 +33,11 @@ namespace GetosDirtLocker
         public static string DefaultHost { get; set; }
         
         /// <summary>
+        /// The hash of the default host of the program, used to identify the host prefix in the filesystem.
+        /// </summary>
+        public static string DefaultHostHash { get; set; }
+        
+        /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
@@ -48,6 +53,7 @@ namespace GetosDirtLocker
                 : Array.Empty<string>();
             
             DefaultHost = databaseHostFile.Length <= 0 ? @".\SQLEXPRESS" : $@"{databaseHostFile[0]},{databaseHostFile[1]}";
+            DefaultHostHash = DefaultHost.GetHashCode().ToString();
 
             try
             {

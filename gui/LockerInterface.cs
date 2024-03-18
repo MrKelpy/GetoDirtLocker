@@ -86,6 +86,8 @@ namespace GetosDirtLocker.gui
         /// </summary>
         public async Task ReloadEntriesAsync()
         { 
+            this.SetAdditionInLoadingState(true);
+            
             // Clears the grid and the selection
             GridDirt.Rows.Clear();
             this.ForceClearSelections();
@@ -114,6 +116,7 @@ namespace GetosDirtLocker.gui
             string entriesText = dirtEntries.Count == 1 ? "entry" : "entries";
             LabelEntriesDisplay.Text = $@"Now displaying {dirtEntries.Count} {entriesText}";
             Mainframe.Instance.reloadEntriesToolStripMenuItem.Available = true;
+            this.SetAdditionInLoadingState(false);
         }
 
         /// <summary>
