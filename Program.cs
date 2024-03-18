@@ -61,14 +61,12 @@ namespace GetosDirtLocker
                 }
 
                 // Create a database manager from the credentials provided.
-                SQLDatabaseManager manager = CreateManagerFromCredentials(DefaultHost, DefaultCredentials);
+                SQLDatabaseManager database = CreateManagerFromCredentials(DefaultHost, DefaultCredentials, "master");
 
                 // If the database doesn't exist, create it.
-                if (!manager.DatabaseExists("DirtLocker"))
-                    manager.RunSqlScript("./sql/dirtlocker.sql");
-
-                // Use the database and start the network thread, checking for network connection.
-                manager.UseDatabase("DirtLocker");
+                if (!database.DatabaseExists("DirtLocker"))
+                    database.RunSqlScript("./sql/dirtlocker.sql");
+                
                 new Thread(EnsureNetworkThread).Start();
                 
                 Application.EnableVisualStyles();
@@ -76,7 +74,7 @@ namespace GetosDirtLocker
                 
                 // Synchronize the database with the file system storage for avatars and dirt entries and start the mainframe.
                 new Thread(HandledSynchronizeDatabase).Start();
-                Application.Run(new Mainframe(manager));
+                Application.Run(new Mainframe());
             }
             
             // If an SQL exception occurs, show an error message letting the user know that the database couldn't be accessed.
@@ -91,21 +89,22 @@ namespace GetosDirtLocker
         /// </summary>
         /// <param name="host">The host of the SQL Server</param>
         /// <param name="credentials">The credentials provided in the configuration file</param>
+        /// <param name="database">The database name to connect to. Defaults to DirtLocker</param>
         /// <returns>The SQL Database Manager used to access the application</returns>
-        public static SQLDatabaseManager CreateManagerFromCredentials(string host, string[] credentials)
+        public static SQLDatabaseManager CreateManagerFromCredentials(string host, string[] credentials, string database = "DirtLocker")
         {
             
             // If the credentials are present, use an sql authentication
             if (credentials.Any(x => x != null))
             {
-                SQLServerConnector connector = new SQLServerConnector(host, "master", credentials[0], credentials[1]);
+                SQLServerConnector connector = new SQLServerConnector(host, database, credentials[0], credentials[1]);
                 return new SQLDatabaseManager(connector);
             }
             
             // If the credentials are not present, use a windows authentication
             else
             {
-                SQLServerConnector connector = new SQLServerConnector(host, "master");
+                SQLServerConnector connector = new SQLServerConnector(host, database);
                 return new SQLDatabaseManager(connector);
             }
             
@@ -163,8 +162,8 @@ namespace GetosDirtLocker
         static void SynchronizeDatabase()
         {
             // Create a database manager from the credentials provided, separate for the synchronization thread.
-            SQLDatabaseManager manager = CreateManagerFromCredentials(DefaultHost, DefaultCredentials);
-            manager.UseDatabase("DirtLocker");
+            SQLDatabaseManager database = CreateManagerFromCredentials(DefaultHost, DefaultCredentials);
+            database.UseDatabase("DirtLocker");
             
             // Get the list of avatar files in the file system and their names.
             string[] avatarFiles = FileManager.AddSection("avatars").GetAllDocuments();
@@ -175,11 +174,11 @@ namespace GetosDirtLocker
             string[] dirtFilenames = dirtFiles.Select(Path.GetFileName).ToArray();
             
             // Get the list of stored files in the database for avatars and dirt entries.
-            string[] attachmentIds = manager.Select(["content_id"], "AttachmentStorage").Select(x => x[0]).ToArray();
-            string[] avatarIds = manager.Select(["content_id"], "AvatarStorage").Select(x => x[0]).ToArray(); 
+            string[] attachmentIds = database.Select(["content_id"], "AttachmentStorage").Select(x => x[0]).ToArray();
+            string[] avatarIds = database.Select(["content_id"], "AvatarStorage").Select(x => x[0]).ToArray(); 
             
             // Get the database accessor
-            DatabaseImageAccessor accessor = new DatabaseImageAccessor(manager);
+            DatabaseImageAccessor accessor = new DatabaseImageAccessor();
             
             // If the file system has more attachment files than the database, add the missing files to the database.
             if (avatarFiles.Length > avatarIds.Length)
@@ -213,8 +212,8 @@ namespace GetosDirtLocker
                 }
             }
             
-            manager.Connector.Disconnect();
-            manager.Connector.Dispose();
+            database.Connector.Disconnect();
+            database.Connector.Dispose();
         }
     }
 }

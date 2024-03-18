@@ -23,11 +23,6 @@ namespace GetosDirtLocker.gui
         /// The singleton instance of the class, used to access the form.
         /// </summary>
         public static Mainframe Instance { get; private set; }
-        
-        /// <summary>
-        /// The database manager used to manage the database of the application.
-        /// </summary>
-        public SQLDatabaseManager Database { get; }
 
         /// <summary>
         /// Whether or not the token needs to be refreshed.
@@ -53,20 +48,18 @@ namespace GetosDirtLocker.gui
         /// The mainframe of the application, working in conjunction with the mainframe system in
         /// the LaminariaCore-Winforms library to provide a single-window GUI for the application.
         /// </summary>
-        /// <param name="databaseManager">The SQLDatabase manager used throughout the program</param>
-        public Mainframe(SQLDatabaseManager databaseManager)
+        public Mainframe()
         {
             InitializeComponent();
             CenterToScreen();
             
             // Sets the three interfaces into the properties defined above.
             TokenInterface = new TokenConfigurationInterface();
-            LockerAddition = new LockerInterface(databaseManager);
+            LockerAddition = new LockerInterface();
             
             // Set the token configuration interface as the default interface.
             MainLayout.SetAllFrom(TokenInterface.GetLayout());
             Instance = this;
-            this.Database = databaseManager;
             
             // Load the token from the file if it exists.
             Section data = Program.FileManager.GetFirstSectionNamed("data");

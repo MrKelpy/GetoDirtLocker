@@ -18,11 +18,6 @@ namespace GetosDirtLocker.gui
     /// </summary>
     public partial class LockerInterface : Form
     {
-        
-        /// <summary>
-        /// The database manager used to access and interact with the db
-        /// </summary>
-        private SQLDatabaseManager Database { get; }
 
         /// <summary>
         /// The dirt manager used to download and cache pictures relative to dirt
@@ -42,14 +37,12 @@ namespace GetosDirtLocker.gui
         /// <summary>
         /// Main constructor of the class
         /// </summary>
-        /// <param name="manager">The database manager used to access and interact with the db</param>
-        public LockerInterface(SQLDatabaseManager manager)
+        public LockerInterface()
         {
             InitializeComponent();
             PictureBoxPermanentLoading.Image = Resources.loader;
-            this.Database = manager;
-            this.DirtManager = new DirtStorageManager(Database);
-            this.ImageAccessor = new DatabaseImageAccessor(Database);
+            this.DirtManager = new DirtStorageManager();
+            this.ImageAccessor = new DatabaseImageAccessor();
             
             GridDirt.RowTemplate.Height = 100;
             GridDirt.ClearSelection();
@@ -66,6 +59,8 @@ namespace GetosDirtLocker.gui
         /// <returns>The list of rows to add to the database</returns>
         private List<string[]> GetFilteredEntries()
         {
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
+            
             string indexationFilter = !TextBoxIndexLookup.Text.Equals(string.Empty) ? $"indexation_id LIKE '%{TextBoxIndexLookup.Text}%'" : "";
             string usernameFilter = !TextBoxUsernameLookup.Text.Equals(string.Empty) ? $"username LIKE '%{TextBoxUsernameLookup.Text}%'" : "";
             string userUUIDFilter = !TextBoxUserUUIDLookup.Text.Equals(string.Empty) ? $"user_id LIKE '%{TextBoxUserUUIDLookup.Text}%'" : "";
@@ -74,7 +69,7 @@ namespace GetosDirtLocker.gui
             
             // If all the filters are empty, return all the entries
             if (indexationFilter == "" && userUUIDFilter == "" && notesFilter == "" && usernameFilter == "")
-                return this.Database.Select("Dirt");
+                return database.Select("Dirt");
             
             // Puts the filters together in a string ignoring any empty ones
             if (indexationFilter != "") finalFilter += indexationFilter;
@@ -83,7 +78,7 @@ namespace GetosDirtLocker.gui
             if (notesFilter != "") finalFilter += finalFilter == "" ? notesFilter : $" AND {notesFilter}";
             
             // Returns the filtered entries
-            return this.Database.Select("Dirt", finalFilter);
+            return database.Select("Dirt", finalFilter);
         }
         
         /// <summary>
@@ -148,8 +143,8 @@ namespace GetosDirtLocker.gui
             return await Task.Run(async () =>
             {
                 // Gets a newly connected manager for this async thread
-                SQLDatabaseManager manager = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
-                manager.UseDatabase("DirtLocker");
+                SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
+                database.UseDatabase("DirtLocker");
                 
                 DiscordUser user = new DiscordUser(entry[1]);
                 string informationString = user.GetInformationString(entry);
@@ -165,8 +160,8 @@ namespace GetosDirtLocker.gui
                 rowTemplate?.CreateCells(GridDirt, entry[0], entry[1], userAvatar, informationString, dirtImage);
                 
                 // Disposes of the database connection
-                manager.Connector.Disconnect();
-                manager.Connector.Dispose();
+                database.Connector.Disconnect();
+                database.Connector.Dispose();
                 
                 return rowTemplate;
             });
@@ -188,6 +183,7 @@ namespace GetosDirtLocker.gui
             }
             
             DiscordUser user = new DiscordUser(TextBoxUserUUID.Text);
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
             
             // Checks if the user UUID is empty.
             if (!await user.CheckAccountExistence())
@@ -206,16 +202,16 @@ namespace GetosDirtLocker.gui
             }
             
             // Checks if the same attachment URL is already in the database
-            if (this.Database.Select("Attachment", $"attachment_url = '{TextBoxAttachmentURL.Text}'").Count > 0)
+            if (database.Select("Attachment", $"attachment_url = '{TextBoxAttachmentURL.Text}'").Count > 0)
             {
                 GeneralErrorProvider.SetError(TextBoxAttachmentURL, "This attachment is already registered.");
                 this.SetAdditionInLoadingState(false);
                 return;
             }
             
-            user.AddToDatabase(this.Database);  // Adds the user to the database if they don't exist.
+            user.AddToDatabase(database);  // Adds the user to the database if they don't exist.
             
-            string indexationID = user.GetNextIndexationID(this.Database);
+            string indexationID = user.GetNextIndexationID(database);
             string username = user.TryGetAdocordUsername() == "" ? (await user.GetUserFromID()).Username : "Unknown";
             
             // Gets the file type and size of the attachment
@@ -224,14 +220,14 @@ namespace GetosDirtLocker.gui
             long fileSize = response.ContentLength;
             
             // Inserts the attachment into the database and then the dirt entry.
-            this.Database.InsertInto("Attachment", fileType, TextBoxAttachmentURL.Text, fileSize);
-            string attachmentID = this.Database.Select(["attachment_id"], "Attachment", $"attachment_url = '{TextBoxAttachmentURL.Text}'")[0][0];
+            database.InsertInto("Attachment", fileType, TextBoxAttachmentURL.Text, fileSize);
+            string attachmentID = database.Select(["attachment_id"], "Attachment", $"attachment_url = '{TextBoxAttachmentURL.Text}'")[0][0];
             
-            this.Database.InsertInto("Dirt", indexationID, user.Uuid.ToString(), int.Parse(attachmentID), username, TextBoxAdditionalNotes.Text);
-            user.IncrementTotalDirtCount(this.Database);
+            database.InsertInto("Dirt", indexationID, user.Uuid.ToString(), int.Parse(attachmentID), username, TextBoxAdditionalNotes.Text);
+            user.IncrementTotalDirtCount(database);
             
             // Builds the information string
-            string informationString = user.GetInformationString(this.Database, indexationID);
+            string informationString = user.GetInformationString(database, indexationID);
             
             // Inserts the dirt entry into the DataGridView
             string dirtPath = await DirtManager.GetDirtPicture(attachmentID);
@@ -307,9 +303,10 @@ namespace GetosDirtLocker.gui
             string userId = GridDirt.Rows[e.RowIndex].Cells[1].Value.ToString();
             string indexationId = GridDirt.Rows[e.RowIndex].Cells[0].Value.ToString();
             DiscordUser user = new DiscordUser(userId);
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
             
             // Gets the information formatted in the discord-pasteable format
-            string information = user.GetInformationString(this.Database, indexationId, true);
+            string information = user.GetInformationString(database, indexationId, true);
             Clipboard.SetData(DataFormats.Text, information);
 
             cell.Value = "Copied to Clipboard";
@@ -371,7 +368,8 @@ namespace GetosDirtLocker.gui
             
             // Gets the user and the entry data
             string indexationId = this.SelectedRow.Cells[0].Value.ToString();
-            string[] entry = this.Database.Select("Dirt", $"indexation_id = '{indexationId}'")[0];
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
+            string[] entry = database.Select("Dirt", $"indexation_id = '{indexationId}'")[0];
             DiscordUser user = new DiscordUser(entry[1]);
             
             // Opens the viewing dialog
@@ -387,13 +385,14 @@ namespace GetosDirtLocker.gui
             if (this.SelectedRow == null) return;
             if (MessageBox.Show(@"Are you sure you want to delete this entry?", @"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
             string indexationId = this.SelectedRow.Cells[0].Value.ToString();
-            string attachmentId = this.Database.Select(["attachment_id"], "Dirt", $"indexation_id = '{indexationId}'")[0][0];
+            string attachmentId = database.Select(["attachment_id"], "Dirt", $"indexation_id = '{indexationId}'")[0][0];
             
             // Deletes the entry from the database
-            this.Database.DeleteFrom("AttachmentStorage", $"content_id = '{attachmentId}'");
-            this.Database.DeleteFrom("Attachment", $"attachment_id = '{attachmentId}'");
-            this.Database.DeleteFrom("Dirt", $"indexation_id = '{indexationId}'");
+            database.DeleteFrom("AttachmentStorage", $"content_id = '{attachmentId}'");
+            database.DeleteFrom("Attachment", $"attachment_id = '{attachmentId}'");
+            database.DeleteFrom("Dirt", $"indexation_id = '{indexationId}'");
             
             // Deletes the file from the disk if it exists
             try { File.Delete(DirtManager.GetDirtPicturePath(attachmentId));
@@ -401,12 +400,12 @@ namespace GetosDirtLocker.gui
             
             // Checks if this was the last entry of the user and deletes the user from the system if it was
             string userId = this.SelectedRow.Cells[1].Value.ToString();
-            new DiscordUser(userId).DecrementTotalDirtCount(Database);  // Decrements the total dirt count of the user
+            new DiscordUser(userId).DecrementTotalDirtCount(database);  // Decrements the total dirt count of the user
 
-            if (this.Database.Select("Dirt", $"user_id = '{userId}'").Count == 0)
+            if (database.Select("Dirt", $"user_id = '{userId}'").Count == 0)
             {
-                this.Database.DeleteFrom("AvatarStorage", $"content_id = '{userId}'");
-                this.Database.DeleteFrom("DiscordUser", $"user_id = '{userId}'");
+                database.DeleteFrom("AvatarStorage", $"content_id = '{userId}'");
+                database.DeleteFrom("DiscordUser", $"user_id = '{userId}'");
             }
 
             Section avatarSection = Program.FileManager.GetFirstSectionNamed("avatars");

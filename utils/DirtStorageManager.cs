@@ -19,11 +19,6 @@ public class DirtStorageManager
     private Section DirtStorageSection { get; } = Program.FileManager.AddSection("dirt");
     
     /// <summary>
-    /// The database manager used to access and interact with the db
-    /// </summary>
-    private SQLDatabaseManager Database { get; }
-    
-    /// <summary>
     /// The image accessor used to manage the images in the database
     /// </summary>
     private DatabaseImageAccessor DatabaseImageAccessor { get; }
@@ -31,11 +26,9 @@ public class DirtStorageManager
     /// <summary>
     /// General constructor of the class, set the database manager and the image accessor
     /// </summary>
-    /// <param name="manager">The database manager used throughout the program</param>
-    public DirtStorageManager(SQLDatabaseManager manager)
+    public DirtStorageManager()
     {
-        this.Database = manager;
-        this.DatabaseImageAccessor = new DatabaseImageAccessor(manager);
+        this.DatabaseImageAccessor = new DatabaseImageAccessor();
     }
 
     /// <summary>
@@ -107,9 +100,11 @@ public class DirtStorageManager
             await fileStream.WriteAsync(image, 0, image.Length);
             return filepath;
         }
+        
+        SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
 
         // If the picture doesn't exist, get the URL from the database and download it.
-        List<string[]> results = this.Database.Select("Attachment", $"attachment_id = '{id}'");
+        List<string[]> results = database.Select("Attachment", $"attachment_id = '{id}'");
         if (results.Count == 0) return null;
         
         if (!await UrlIsDownloadablePicture(results[0][2])) return null;

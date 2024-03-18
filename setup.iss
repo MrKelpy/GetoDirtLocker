@@ -28,7 +28,7 @@ LicenseFile=C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\LICENSE.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
-OutputBaseFilename=GetosDirtLocker
+OutputBaseFilename=GetosDirtLocker-Setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

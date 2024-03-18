@@ -14,17 +14,6 @@ public class DatabaseImageAccessor
 {
     
     /// <summary>
-    /// The database manager used to access and interact with the db
-    /// </summary>
-    public SQLDatabaseManager Database { get; }
-    
-    /// <summary>
-    /// General constructor of the class, set the database manager.
-    /// </summary>
-    /// <param name="manager">The database manager used throughout the program</param>
-    public DatabaseImageAccessor(SQLDatabaseManager manager) => this.Database = manager;
-    
-    /// <summary>
     /// Adds an image to the database based on a specified table name, ID and path. This method
     /// takes care of BINARY data, not URLs.
     /// </summary>
@@ -37,10 +26,10 @@ public class DatabaseImageAccessor
         {
             // Read the specified file data and create the command in a new connection.
             byte[] data = File.ReadAllBytes(path);
-            SQLDatabaseManager manager = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
-            manager.UseDatabase("DirtLocker");
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
+            database.UseDatabase("DirtLocker");
             
-            using SqlCommand command = new($"INSERT INTO {table} VALUES (@id, @data)", manager.Connector.Connection);
+            using SqlCommand command = new($"INSERT INTO {table} VALUES (@id, @data)", database.Connector.Connection);
 
             // Add the parameters to the command template.
             command.Parameters.AddWithValue("@id", id);
@@ -69,8 +58,8 @@ public class DatabaseImageAccessor
         {
             // Read the specified file data and create the command in a new connection.
             byte[] data = File.ReadAllBytes(path);
-            SQLDatabaseManager manager = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
-            manager.UseDatabase("DirtLocker");
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
+            database.UseDatabase("DirtLocker");
 
             // If the image does not exist, add it to the database instead.
             if (!ImageExists(id, table))
@@ -79,7 +68,7 @@ public class DatabaseImageAccessor
                 return Task.CompletedTask;
             }
             
-            using SqlCommand command = new($"UPDATE {table} SET content = @data WHERE content_id = @id", manager.Connector.Connection);
+            using SqlCommand command = new($"UPDATE {table} SET content = @data WHERE content_id = @id", database.Connector.Connection);
 
             // Add the parameters to the command template.
             command.Parameters.AddWithValue("@id", id);
@@ -105,7 +94,8 @@ public class DatabaseImageAccessor
     {
         try
         {
-            return this.Database.Select(table, $"content_id = '{id}'").Count > 0;
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
+            return database.Select(table, $"content_id = '{id}'").Count > 0;
         }
         
         // If an exception occurs, return false.
@@ -122,8 +112,10 @@ public class DatabaseImageAccessor
     {
         try
         {
+            SQLDatabaseManager database = Program.CreateManagerFromCredentials(Program.DefaultHost, Program.DefaultCredentials);
+            
             // Create the command and add the parameters.
-            using SqlCommand command = new($"SELECT * FROM {table} WHERE content_id = @id", this.Database.Connector.Connection);
+            using SqlCommand command = new($"SELECT * FROM {table} WHERE content_id = @id", database.Connector.Connection);
             command.Parameters.AddWithValue("@id", id);
             
             // Execute the command and return the result.
