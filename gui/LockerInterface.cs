@@ -399,7 +399,7 @@ namespace GetosDirtLocker.gui
             
             // Deletes the file from the disk if it exists
             try { File.Delete(DirtManager.GetDirtPicturePath(attachmentId));
-            } catch (IOException) { }
+            } catch { }
             
             // Checks if this was the last entry of the user and deletes the user from the system if it was
             string userId = this.SelectedRow.Cells[1].Value.ToString();
