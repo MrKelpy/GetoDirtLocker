@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Geto's Dirt Locker"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.3.6"
 #define MyAppPublisher "Alexandre Silva (MrKelpy)"
 #define MyAppURL "https://github.com/MrKelpy/GetosDirtLocker"
 #define MyAppExeName "GetosDirtLocker.exe"
@@ -28,7 +28,7 @@ LicenseFile=C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\LICENSE.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
-OutputBaseFilename=GetosDirtLocker-Setup
+OutputBaseFilename=GetosDirtLocker-{#MyAppVersion}-Setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
