@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using GetosDirtLocker.Properties;
 using LaminariaCore_Databases.sqlserver;
 using LaminariaCore_General.common;
-using LaminariaCore_General.utils;
 
 namespace GetosDirtLocker.utils;
 

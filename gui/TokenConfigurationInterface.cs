@@ -7,8 +7,6 @@ using System.Management;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using GetosDirtLocker.utils;
-using LaminariaCore_Databases.sqlserver;
 using LaminariaCore_General.common;
 
 namespace GetosDirtLocker.gui

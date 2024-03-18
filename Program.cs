@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
 using GetosDirtLocker.gui;
-using GetosDirtLocker.Properties;
 using GetosDirtLocker.utils;
 using LaminariaCore_Databases.sqlserver;
 using LaminariaCore_General.common;
@@ -66,7 +61,7 @@ namespace GetosDirtLocker
                 }
 
                 // Create a database manager from the credentials provided.
-                SQLDatabaseManager manager = Program.CreateManagerFromCredentials(DefaultHost, DefaultCredentials);
+                SQLDatabaseManager manager = CreateManagerFromCredentials(DefaultHost, DefaultCredentials);
 
                 // If the database doesn't exist, create it.
                 if (!manager.DatabaseExists("DirtLocker"))
@@ -168,7 +163,7 @@ namespace GetosDirtLocker
         static void SynchronizeDatabase()
         {
             // Create a database manager from the credentials provided, separate for the synchronization thread.
-            SQLDatabaseManager manager = Program.CreateManagerFromCredentials(DefaultHost, DefaultCredentials);
+            SQLDatabaseManager manager = CreateManagerFromCredentials(DefaultHost, DefaultCredentials);
             manager.UseDatabase("DirtLocker");
             
             // Get the list of avatar files in the file system and their names.

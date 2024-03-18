@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Discord;
@@ -7,8 +6,6 @@ using Discord.WebSocket;
 using GetosDirtLocker.gui;
 using GetosDirtLocker.Properties;
 using GetosDirtLocker.utils;
-using Microsoft.SqlServer.Management.HadrData;
-using Image = System.Drawing.Image;
 
 namespace GetosDirtLocker.requests
 {

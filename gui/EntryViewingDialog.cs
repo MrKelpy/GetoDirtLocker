@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using GetosDirtLocker.requests;
 using GetosDirtLocker.utils;
-using LaminariaCore_Databases.sqlserver;
 
 namespace GetosDirtLocker.gui;
 
