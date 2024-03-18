@@ -234,7 +234,7 @@ namespace GetosDirtLocker.gui
             
             // Inserts the dirt entry into the DataGridView
             string dirtPath = await DirtManager.GetDirtPicture(attachmentID);
-
+            
             Image userAvatarCopy = FileUtilExtensions.GetImageFromFileStream(await user.DownloadUserAvatar(ImageAccessor));
             Image dirtImageCopy = FileUtilExtensions.GetImageFromFileStream(dirtPath);
             GridDirt.Rows.Insert(0, indexationID, user.Uuid, userAvatarCopy, informationString, dirtImageCopy);

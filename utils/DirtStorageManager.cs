@@ -40,7 +40,7 @@ public class DirtStorageManager
     public async Task<bool> DownloadDirtPicture(string url, string id)
     {
         // Create the file path and download the avatar.
-        string filepath = this.DirtStorageSection.SectionFullPath + $"/{id}.png";
+        string filepath = this.DirtStorageSection.SectionFullPath + $"/{Program.DefaultHostHash+id}.png";
         using WebResponse response = await WebRequest.Create(url).GetResponseAsync();
         
         // Copy the response stream to the file stream.
