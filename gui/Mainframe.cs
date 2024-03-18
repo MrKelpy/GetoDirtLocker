@@ -103,7 +103,7 @@ namespace GetosDirtLocker.gui
 
                 this.Invoke(() =>
                 {
-                    LockerAddition.PictureLoading.Image = Resources.loader;
+                    LockerAddition.PictureLoading.Image = Resources.warning;
                     TokenInterface.TextBoxToken.Enabled = true;
                     Instance.reloadEntriesToolStripMenuItem.Available = false;
                 });

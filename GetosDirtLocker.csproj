@@ -137,6 +137,7 @@
         <Content Include="Resources\nuhuh.jpg" />
         <Content Include="Resources\shoko.jpg" />
         <Content Include="Resources\warning.png" />
+        <Content Include="Resources\warning1.png" />
         <Content Include="Resources\yuji2.jpg" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

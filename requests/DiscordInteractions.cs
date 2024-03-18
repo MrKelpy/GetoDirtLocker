@@ -59,7 +59,7 @@ namespace GetosDirtLocker.requests
                     Mainframe.TokenInterface.TextBoxToken.Enabled = true;
                     Mainframe.Instance.ChangeControlStates(false);
                     Mainframe.Instance.reloadEntriesToolStripMenuItem.Available = false;
-                    Mainframe.LockerAddition.PictureLoading.Image = FileUtilExtensions.GetImageFromFileStream(Resources.warning);
+                    Mainframe.LockerAddition.PictureLoading.Image = Resources.warning;
                 }));
 
                 Client.StopAsync();

@@ -140,11 +140,12 @@ namespace GetosDirtLocker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {C:\dev\CSharp\GetosLockerIndexer\GetosDirtLocker\Resources\warning.png}.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string warning {
+        internal static System.Drawing.Bitmap warning {
             get {
-                return ResourceManager.GetString("warning", resourceCulture);
+                object obj = ResourceManager.GetObject("warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
