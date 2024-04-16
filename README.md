@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="300" src="https://cdn.discordapp.com/attachments/797223501764362243/1214956620224921610/NewProject-2023-09-29T135350.042-removebg-preview.png?ex=65faff87&is=65e88a87&hm=4f22eaeeb2c25984c8cc1334f4d880a7fd12c75d51ae48b98745ab528034f8a2&?raw=true" alt="logo">
+    <img width="300" src="https://raw.githubusercontent.com/MrKelpy/GetosDirtLocker/master/icon.ico" alt="logo">
 </p>
 
 # Geto's Dirt Locker 2: Electric Boogaloo
