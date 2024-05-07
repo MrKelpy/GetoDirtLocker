@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Geto's Dirt Locker"
-#define MyAppVersion "1.3.6"
+#define MyAppVersion "1.3.7"
 #define MyAppPublisher "Alexandre Silva (MrKelpy)"
 #define MyAppURL "https://github.com/MrKelpy/GetosDirtLocker"
 #define MyAppExeName "GetosDirtLocker.exe"
@@ -24,7 +24,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-LicenseFile=C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\LICENSE.txt
+LicenseFile=C:\dev\GetosDirtLocker\LICENSE.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
@@ -32,6 +32,8 @@ OutputBaseFilename=GetosDirtLocker-{#MyAppVersion}-Setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+SetupIconFile=icon.ico
+UninstallDisplayIcon=icon.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -40,114 +42,114 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Azure.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Azure.Identity.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Discord.Net.Commands.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Discord.Net.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Discord.Net.Interactions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Discord.Net.Rest.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Discord.Net.Webhook.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Discord.Net.WebSocket.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\GetosDirtLocker.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\GetosDirtLocker.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\LaminariaCore_Databases.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\LaminariaCore_General.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\LaminariaCore_Winforms.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.arm64.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.arm64.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.x64.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.x64.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.x86.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.x86.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.Tools.Sql.BatchParser.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Data.Tools.Sql.BatchParser.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Extensions.DependencyInjection.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Identity.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.Identity.Client.Extensions.Msal.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.JsonWebTokens.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Logging.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Protocols.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Tokens.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Assessment.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Assessment.Types.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.ConnectionInfo.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.ConnectionInfo.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Dmf.Common.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Dmf.Common.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Dmf.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Dmf.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Assessment.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Assessment.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Collector.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Collector.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.CollectorEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.CollectorEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.HadrData.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.HadrData.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.HadrModel.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.HadrModel.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.RegisteredServers.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.RegisteredServers.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Sdk.Sfc.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Sdk.Sfc.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.SqlScriptPublish.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.SqlScriptPublish.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEvent.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEvent.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventDbScoped.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventDbScoped.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventDbScopedEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventDbScopedEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.PolicyEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.PolicyEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.RegSvrEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.RegSvrEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.ServiceBrokerEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.ServiceBrokerEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Smo.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Smo.Notebook.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Smo.Notebook.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Smo.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SmoExtended.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SmoExtended.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlClrProvider.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlClrProvider.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlWmiManagement.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlWmiManagement.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.WmiEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Microsoft.SqlServer.WmiEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Buffers.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.CodeDom.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Collections.Immutable.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Configuration.ConfigurationManager.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Diagnostics.DiagnosticSource.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.IdentityModel.Tokens.Jwt.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Interactive.Async.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Linq.Async.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Memory.Data.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Memory.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Numerics.Vectors.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Reactive.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Runtime.CompilerServices.Unsafe.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Security.AccessControl.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Security.Cryptography.ProtectedData.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Security.Permissions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Security.Principal.Windows.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Text.Encodings.Web.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Text.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.Threading.Tasks.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\C#\GetosLockerIndexer\GetosDirtLocker\bin\Release\System.ValueTuple.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Azure.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Azure.Identity.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Discord.Net.Commands.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Discord.Net.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Discord.Net.Interactions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Discord.Net.Rest.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Discord.Net.Webhook.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Discord.Net.WebSocket.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\GetosDirtLocker.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\GetosDirtLocker.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\LaminariaCore_Databases.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\LaminariaCore_General.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\LaminariaCore_Winforms.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.arm64.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.arm64.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.x64.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.x64.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.x86.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.SqlClient.SNI.x86.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.Tools.Sql.BatchParser.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Data.Tools.Sql.BatchParser.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Extensions.DependencyInjection.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Identity.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.Identity.Client.Extensions.Msal.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.JsonWebTokens.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Logging.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Protocols.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.IdentityModel.Tokens.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Assessment.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Assessment.Types.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.ConnectionInfo.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.ConnectionInfo.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Dmf.Common.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Dmf.Common.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Dmf.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Dmf.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Assessment.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Assessment.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Collector.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Collector.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.CollectorEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.CollectorEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.HadrData.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.HadrData.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.HadrModel.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.HadrModel.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.RegisteredServers.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.RegisteredServers.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Sdk.Sfc.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.Sdk.Sfc.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.SqlScriptPublish.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.SqlScriptPublish.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEvent.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEvent.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventDbScoped.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventDbScoped.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventDbScopedEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventDbScopedEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Management.XEventEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.PolicyEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.PolicyEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.RegSvrEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.RegSvrEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.ServiceBrokerEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.ServiceBrokerEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Smo.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Smo.Notebook.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Smo.Notebook.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.Smo.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SmoExtended.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SmoExtended.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlClrProvider.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlClrProvider.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlWmiManagement.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.SqlWmiManagement.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.WmiEnum.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Microsoft.SqlServer.WmiEnum.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Buffers.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.CodeDom.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Collections.Immutable.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Configuration.ConfigurationManager.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Diagnostics.DiagnosticSource.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.IdentityModel.Tokens.Jwt.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Interactive.Async.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Linq.Async.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Memory.Data.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Memory.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Numerics.Vectors.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Reactive.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Runtime.CompilerServices.Unsafe.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Security.AccessControl.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Security.Cryptography.ProtectedData.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Security.Permissions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Security.Principal.Windows.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Text.Encodings.Web.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Text.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.Threading.Tasks.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\dev\GetosDirtLocker\bin\Release\System.ValueTuple.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
